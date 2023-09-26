@@ -1,0 +1,129 @@
+-- create_schema.sql
+CREATE TABLE Students (
+    student_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    email VARCHAR(100) UNIQUE,
+    birthdate DATE,
+    registration_date DATE
+);
+
+CREATE TABLE Courses (
+    course_id INT PRIMARY KEY,
+    course_name VARCHAR(100),
+    instructor VARCHAR(100),
+    start_date DATE,
+    end_date DATE,
+    capacity INT
+);
+-- insert_data.sql
+-- Insert Students
+INSERT INTO Students (student_id, first_name, last_name, email, birthdate, registration_date)
+VALUES
+(1, 'Joe', 'Goldberg', 'joegldbrg@example.com', '1990-03-20', '2023-03-15'),
+(2, 'Yuji', 'Itadori', 'itadoriyuji@gmail.com', '2001-02-20', '2023-08-28'),
+(3, 'Biscuit', 'Krueger', 'bsctkrgr@example.com', '1999-02-20', '2023-02-15'),
+(4, 'Light', 'Yagami', 'lightygmi@example.com', '2000-03-10', '2023-02-18'),
+(5, 'Wiz', 'Khalifa', 'whizzykhalifa@example.com', '2003-03-14', '2023-02-10');
+
+-- Insert Courses
+INSERT INTO Courses (course_id, course_name, instructor, start_date, end_date, capacity)
+VALUES
+   (1, 'Mathematics 401', 'Prof. Pythagoras', '2023-03-30', '2023-06-20', 30),
+(2, 'History 401', 'Prof. Leopold', '2023-04-05', '2023-07-15', 25),
+(3, 'Computer Science 401', 'Prof. Makaveli', '2023-03-25', '2023-07-30', 40),
+(4, 'English Literature 401', 'Prof. Eminem', '2023-03-30', '2023-06-15', 35),
+(5, 'Chemistry 401', 'Prof. White', '2023-04-10', '2023-06-23', 30);
+-- retrieve_courses_with_details.sql
+
+
+SELECT first_name, last_name, email
+FROM Students 
+INNER JOIN Courses ON course_id = course_id
+WHERE start_date > '2023-01-01';
+SELECT course_name, instructor, capacity
+FROM Courses
+INNER JOIN Students ON student_id = student_id
+WHERE start_date > '2023-01-01';
+
+|
+|
+|
+
+Problem Statement:
+
+You are tasked with creating SQL queries to manage student registrations for courses. Please write the following SQL queries:
+
+1. Write a SQL query to create the Students and Courses tables with the specified columns and constraints.
+
+-- create_schema.sql
+CREATE TABLE Students (
+    student_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    email VARCHAR(100) UNIQUE,
+    birthdate DATE,
+    registration_date DATE
+);
+
+CREATE TABLE Courses (
+    course_id INT PRIMARY KEY,
+    course_name VARCHAR(100),
+    instructor VARCHAR(100),
+    start_date DATE,
+    end_date DATE,
+    capacity INT
+);
+
+2. Write a SQL query to insert at least five students and five courses into their respective tables. Ensure that some of the students are registered for some of the courses.
+
+-- Insert Students
+INSERT INTO Students (student_id, first_name, last_name, email, birthdate, registration_date)
+VALUES
+(1, 'Joe', 'Goldberg', 'joegldbrg@example.com', '1990-03-20', '2023-03-15'),
+(2, 'Marwin', 'Payab', 'mrwnpyb@example.com', '2000-01-28', '2023-03-01'),
+(3, 'Biscuit', 'Krueger', 'bsctkrgr@example.com', '1999-02-20', '2023-02-15'),
+(4, 'Light', 'Yagami', 'lightygmi@example.com', '2000-03-10', '2023-02-18'),
+(5, 'Wiz', 'Khalifa', 'whizzykhalifa@example.com', '2003-03-14', '2023-02-10');
+
+-- Insert Courses
+
+INSERT INTO Courses (course_id, course_name, instructor, start_date, end_date, capacity)
+VALUES
+(1, 'Mathematics 401', 'Prof. Pythagoras', '2023-03-30', '2023-06-20', 30),
+(2, 'History 401', 'Prof. Leopold', '2023-04-05', '2023-07-15', 25),
+(3, 'Computer Science 401', 'Prof. Makaveli', '2023-03-25', '2023-07-30', 40),
+(4, 'English Literature 401', 'Prof. Eminem', '2023-03-30', '2023-06-15', 35),
+(5, 'Chemistry 401', 'Prof. White', '2023-04-10', '2023-06-23', 30);
+
+3. Write a SQL query to retrieve a list of all courses along with the number of students currently registered for each course. Include courses with no registered students.
+
+CREATE TABLE Courses (
+    course_id INT PRIMARY KEY,
+    course_name VARCHAR(100),
+    instructor VARCHAR(100),
+    start_date DATE,
+    end_date DATE,
+    capacity INT
+);
+
+INSERT INTO Students (student_id, first_name, last_name, email, birthdate, registration_date)
+VALUES
+(1,1)
+(2,2)
+(3,3)
+(4,4)
+(5,5)
+
+
+4. Write a SQL query to retrieve the names and email addresses of students who have registered for a course that starts after '2023-01-01'.
+
+
+SELECT first_name, last_name, email
+FROM Students 
+INNER JOIN Courses ON course_id = course_id
+WHERE start_date > '2023-01-01';
+SELECT course_name, instructor, capacity
+FROM Courses
+INNER JOIN Students ON student_id = student_id
+WHERE start_date > '2023-01-01';
